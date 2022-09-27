@@ -13,4 +13,7 @@ for tweet in sntwitter.TwitterSearchScraper(query).get_items():
 
 df = pd.DataFrame(tweets, columns=['Date', 'User', 'Tweet'])
 
-print(df[df['Tweet'].str.contains('$', regex=False)])
+df_ticker_symbols = (df[df['Tweet'].str.contains('$', regex=False)])
+
+df_ticker_symbols.to_csv('stock_related/data/df_twitter_ticker_symbols.csv',
+                         index=False, header=True, sep=',')
